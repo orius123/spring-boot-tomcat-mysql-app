@@ -74,13 +74,11 @@ operations:
               try:
                 result = urllib2.urlopen(url)
               except Exception as e:
-                 print e.reason
-                 down = True
+                print e.reason
+                down = True
               else:
-                  code = result.getcode()
-                  if code == 200 :
-                    count = count + 1
-                    time.sleep(1)
+                count = count + 1
+                time.sleep(1)
         outputs:
           - errorMessage: "'Application is not Down , after ' + count + ' attempts to ping .'"
         results:
