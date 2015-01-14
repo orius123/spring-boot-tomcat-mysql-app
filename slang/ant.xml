@@ -24,14 +24,14 @@
         <exec executable="/bin/bash" osfamily="unix">
             <arg value="${build}/slang/appassembler/bin/slang"/>
             <arg value="run"/>
-            <arg value="install-app.sl"/>
+            <arg value="run-app.sl"/>
         </exec>
 
         <exec executable="cmd" osfamily="windows">
             <arg value="/c"/>
             <arg value="${build}/slang/appassembler/bin/slang"/>
             <arg value="run"/>
-            <arg value="install-app.sl"/>
+            <arg value="run-app.sl"/>
         </exec>
 
     </target>
