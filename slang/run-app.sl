@@ -5,11 +5,15 @@ imports:
 
 flow:
   name: run_app
+
+  inputs:
+    - build_dir
+
   workflow:
     start_app:
       do:
         ops.run_jar:
-          - jar_path: "'/home/orius123/dev/jenkins/spring-boot-tomcat-mysql-app/target/spring-boot-sample-tomcat-1.2.0.RELEASE.jar'"
+          - jar_path: build_dir + "/target/spring-boot-sample-tomcat-1.2.0.RELEASE.jar"
 
     wait_for_app_to_start:
       do:

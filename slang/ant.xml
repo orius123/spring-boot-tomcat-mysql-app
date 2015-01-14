@@ -25,6 +25,8 @@
             <arg value="${build}/slang/appassembler/bin/slang"/>
             <arg value="run"/>
             <arg value="run-app.sl"/>
+            <arg value="--i"/>
+            <arg value="build_dir=${basedir}/../"/>
         </exec>
 
         <exec executable="cmd" osfamily="windows">
@@ -32,6 +34,8 @@
             <arg value="${build}/slang/appassembler/bin/slang"/>
             <arg value="run"/>
             <arg value="run-app.sl"/>
+            <arg value="--i"/>
+            <arg value="build_dir=${basedir}/../"/>
         </exec>
 
     </target>
