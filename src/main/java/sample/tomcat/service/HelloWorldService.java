@@ -29,7 +29,7 @@ public class HelloWorldService {
     @Autowired
     private NameRepository nameRepository;
 
-    private String DEFUALT_NAME = "score";
+    private static String DEFUALT_NAME = "score";
 
     public String getHelloMessage() {
         Iterator<Name> names = nameRepository.findAll().iterator();

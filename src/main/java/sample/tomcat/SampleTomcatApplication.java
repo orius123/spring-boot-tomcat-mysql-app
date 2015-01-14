@@ -16,43 +16,34 @@
 
 package sample.tomcat;
 
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
-@Configuration
-@EnableAutoConfiguration
-@ComponentScan
+import javax.sql.DataSource;
+
+@SpringBootApplication
 public class SampleTomcatApplication {
-
-    private static Log logger = LogFactory.getLog(SampleTomcatApplication.class);
-
-    @Bean
-    protected ServletContextListener listener() {
-        return new ServletContextListener() {
-
-            @Override
-            public void contextInitialized(ServletContextEvent sce) {
-                logger.info("ServletContext initialized");
-            }
-
-            @Override
-            public void contextDestroyed(ServletContextEvent sce) {
-                logger.info("ServletContext destroyed");
-            }
-
-        };
-    }
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(SampleTomcatApplication.class, args);
+    }
+
+    @Bean
+    @Primary
+    public DataSource h2DataSource(){
+        return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).build();
+    }
+
+    @Bean
+    @ConfigurationProperties(prefix = "datasource.mysql")
+    public DataSource mysqlDataSource(){
+        return DataSourceBuilder.create().build();
     }
 
 }
