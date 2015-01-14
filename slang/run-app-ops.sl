@@ -19,13 +19,13 @@ operations:
       results:
         - SUCCESS
 
-  - kill_child_processes:
+  - send_shutdown:
 #      inputs:
 #        - process_name
       action:
         python_script: |
           import urllib
-          urllib.urlopen(url = "http://localhost:8080/shutdown", data="")
+          urllib.urlopen(url = "http://localhost:9002/shutdown", data="")
       results:
         - SUCCESS
 

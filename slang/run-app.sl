@@ -19,21 +19,21 @@ flow:
       do:
         ops.verify_app_is_up:
           - host: "'localhost'"
-          - port: "'8080'"
+          - port: "'9002'"
           - max_seconds_to_wait: "'60'"
 
-    task3:
+    test:
       do:
         ops.print:
           - text: "'foo'"
 
     kill_app:
       do:
-        ops.kill_child_processes:
+        ops.send_shutdown:
 
     wait_for_up_to_shutdown:
       do:
         ops.wait_for_up_to_shutdown:
           - host: "'localhost'"
-          - port: "'8080'"
+          - port: "'9002'"
           - max_seconds_to_wait: "'10'"
