@@ -6,6 +6,10 @@
     <property name="build" location="build"/>
     <property name="proxy.host" value="host"/>
     <property name="proxy.port" value="port"/>
+
+    <property name="db.host" value="db.host"/>
+    <property name="db.host.user" value="db.host.user"/>
+    <property name="db.host.password" value="db.host.password"/>
     <echo message="proxy host: ${proxy.host}, proxy port: ${proxy.port}"/>
 
     <target name="init">
@@ -26,7 +30,7 @@
             <arg value="run"/>
             <arg value="run-app.sl"/>
             <arg value="--i"/>
-            <arg value="build_dir=${basedir}/../"/>
+            <arg value="build_dir=${basedir}/../,db_host=${db.host},db_host_user=${db.host.user},db_host_password=${db.host.password}"/>
         </exec>
 
         <exec executable="cmd" osfamily="windows">
@@ -35,7 +39,7 @@
             <arg value="run"/>
             <arg value="run-app.sl"/>
             <arg value="--i"/>
-            <arg value="build_dir=${basedir}/../"/>
+            <arg value="build_dir=${basedir}/../,db_host=${db.host},db_host_user=${db.host.user},db_host_password=${db.host.password}"/>
         </exec>
 
     </target>
