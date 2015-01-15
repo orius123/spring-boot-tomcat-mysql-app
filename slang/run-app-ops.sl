@@ -84,3 +84,27 @@ operations:
         results:
           - SUCCESS: down == 'True'
           - FAILURE
+
+  - check_postgres_is_up:
+          inputs:
+            - host
+            - port: "'22'"
+            - username
+            - password
+            - privateKeyFile: "''"
+            - arguments: "''"
+            - command: "'psql --version'"
+            - characterSet: "'UTF-8'"
+            - pty: "'false'"
+            - timeout: "'90000'"
+            - closeSession: "'false'"
+          action:
+            java_action:
+              className: org.openscore.content.ssh.actions.SSHShellCommandAction
+              methodName: runSshShellCommand
+          outputs:
+            - additionalInformation: returnResult
+            - errorMessage:  STDERR if returnCode == '0' else returnResult
+          results:
+            - SUCCESS : returnCode == '0' and returnResult == 'psql (PostgreSQL) 9.3.2\n'
+            - FAILURE

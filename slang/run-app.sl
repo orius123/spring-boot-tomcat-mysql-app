@@ -8,6 +8,9 @@ flow:
 
   inputs:
     - build_dir
+    - db_host
+    - db_host_user
+    - db_host_password
 
   workflow:
     start_app:
@@ -25,7 +28,7 @@ flow:
     test:
       do:
         ops.print:
-          - text: "'foo'"
+          - text: "'Testing things'"
 
     kill_app:
       do:
@@ -37,3 +40,10 @@ flow:
           - host: "'localhost'"
           - port: "'9002'"
           - max_seconds_to_wait: "'10'"
+
+    check_db_is_up:
+      do:
+        ops.check_postgres_is_up:
+          - host: db_host
+          - username: db_host_user
+          - password: db_host_password
